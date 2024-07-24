@@ -2,12 +2,18 @@
 
 # D. Given a list of numbers, return a list where
 # all adjacent == elements have been reduced to a single element,
-# so [1, 2, 2, 3] returns [1, 2, 3]. You may create a new list or
+# so [1, 2, 2, 3] returns [1, 2, 3].
 # modify the passed in list.
 
 def remove_adjacent(nums):
-    # +++your code here+++
-    return
+    i = 0
+    while i < len(nums) - 1:
+        if nums[i] == nums[i + 1]:
+            nums.pop(i + 1)
+        else:
+            i += 1
+    return nums
+        
 
 
 # E. Given two lists sorted in increasing order, create and return a merged
@@ -16,8 +22,27 @@ def remove_adjacent(nums):
 # pass of both lists.
 
 def linear_merge(list1, list2):
-    # +++your code here+++
-    return
+    # return sorted(list1 + list2)
+    
+    result = []
+    i = j = 0
+
+    while i < len(list1) and j < len(list2):
+        if list1[i] < list2[j]:
+            result.append(list1[i])
+            i += 1
+        else:
+            result.append(list2[j])
+            j += 1
+
+    if i < len(list1):
+        result.extend(list1[i:])
+
+    if j < len(list2):
+        result.extend(list2[j:])
+    
+    return result
+    
 
 
 # Note: the solution above is kind of cute, but unforunately list.pop(0)
